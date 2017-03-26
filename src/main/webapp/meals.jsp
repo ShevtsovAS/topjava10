@@ -11,7 +11,7 @@
 <%
     List<MealWithExceed> myMeals = (List<MealWithExceed>) request.getAttribute("meals");
 %>
-    <table class="table_blur">
+    <table>
         <thead>
             <tr>
                 <th>Дата и время</th>
@@ -21,11 +21,20 @@
         </thead>
         <tbody>
         <c:forEach items="<%=myMeals%>" var="meal">
-            <tr>
-                <th><javatime:format value="${meal.dateTime}" pattern="dd.MM.yyyy hh:mm" /></th>
-                <th>${meal.description}</th>
-                <th>${meal.calories}</th>
-            </tr>
+            <c:if test="${meal.exceed}">
+                <tr style="color: red">
+                    <th><javatime:format value="${meal.dateTime}" pattern="dd.MM.yyyy hh:mm" /></th>
+                    <th>${meal.description}</th>
+                    <th>${meal.calories}</th>
+                </tr>
+            </c:if>
+            <c:if test="${not meal.exceed}">
+                <tr style="color: green">
+                    <th><javatime:format value="${meal.dateTime}" pattern="dd.MM.yyyy hh:mm" /></th>
+                    <th>${meal.description}</th>
+                    <th>${meal.calories}</th>
+                </tr>
+            </c:if>
         </c:forEach>
         </tbody>
     </table>
