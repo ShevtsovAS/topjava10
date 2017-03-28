@@ -83,7 +83,7 @@ public class MealServlet extends HttpServlet {
         int calories = Integer.parseInt(req.getParameter("calories"));
 
         if (id == null || id.isEmpty()) {
-            Meal meal = new Meal(dateTime, description, calories);
+            Meal meal = new Meal(MealDAOImpl.getId(), dateTime, description, calories);
             dao.createMeal(meal);
         }
         else {
