@@ -1,0 +1,64 @@
+body {
+    background-color: #e8f3e8;
+}
+
+h2 {
+    text-align: center;
+    font-size: 50px;
+    color: steelblue;
+}
+
+form {
+    margin: 20px auto;
+    width: 350px;
+    color: steelblue;
+}
+
+input {
+    padding: 10px;
+    font-size: inherit;
+}
+
+input[type="text"] {
+    display: block;
+    margin-bottom: 15px;
+    width: 100%;
+    border: 2px solid steelblue;
+    background: #faf6d9;
+}
+
+input[type="datetime-local"] {
+    display: block;
+    margin-bottom: 15px;
+    width: 100%;
+    border: 2px solid steelblue;
+    background: #faf6d9;
+}
+
+input[type="number"] {
+    display: block;
+    margin-bottom: 15px;
+    width: 100%;
+    border: 2px solid steelblue;
+    background: #faf6d9;
+}
+
+input[type="submit"] {
+    width: 100%;
+    height: 45px;
+    border: none;
+    background: steelblue;
+    color: white;
+}
+
+input[type="submit"]:focus {
+    width: 100%;
+    height: 45px;
+    border: solid steelblue;
+    background: white;
+    color: steelblue;
+}
+
+input:focus {
+    background: white;
+}

@@ -5,29 +5,31 @@
 <html>
 <head>
     <title>Meal information</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
     <%
         Meal meal = (Meal) request.getAttribute("meal");
     %>
+    <h2>Добавление еды</h2>
     <form method="post" action="meals">
         <c:if test="<%=meal != null%>">
-            ID: <input type="text" readonly="readonly" name="id" value="<%=meal.getId()%>" /><br/>
-            Дата и время: <input
+            <input type="hidden" style="display: none" id="id" name="id" value="<%=meal.getId()%>"/>
+            Дата и время: <input required
                 type="datetime-local"
                 name="dt"
-                value="<%=meal.getDateTime()%>" /><br/>
-            Описание: <input type="text" name="description" value="<%=meal.getDescription()%>" /><br/>
-            Калории: <input type="text" name="calories" value="<%=meal.getCalories()%>" /><br/>
+                value="<%=meal.getDateTime()%>" />
+            Описание: <input type="text" name="description" value="<%=meal.getDescription()%>" autofocus required/>
+            Калории: <input type="number" step="any" name="calories" value="<%=meal.getCalories()%>" required/>
         </c:if>
         <c:if test="<%=meal == null%>">
-            ID: <input type="text" readonly="readonly" name="id" value=""/><br/>
-            Дата и время: <input
+            <input type="hidden" style="display: none" id="id" name="id" value=""/>
+            Дата и время: <input required
                 type="datetime-local"
                 name="dt"
-                value="" /><br/>
-            Описание: <input type="text" name="description" value="" /><br/>
-            Калории: <input type="text" name="calories" value="" /><br/>
+                value="" />
+            Описание: <input type="text" name="description" value="" autofocus required/>
+            Калории: <input type="number" step="any" name="calories" value="" required/>
         </c:if>
         <input type="submit" value="OK" />
     </form>
