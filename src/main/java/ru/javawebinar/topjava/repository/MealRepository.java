@@ -2,7 +2,7 @@ package ru.javawebinar.topjava.repository;
 
 import ru.javawebinar.topjava.model.Meal;
 
-import java.util.Collection;
+import java.util.List;
 
 /**
  * GKislin
@@ -11,9 +11,15 @@ import java.util.Collection;
 public interface MealRepository {
     Meal save(Meal Meal);
 
-    void delete(int id);
+    // false if not found
+    boolean update(Meal meal, int userId);
 
-    Meal get(int id);
+    // false if not found
+    boolean delete(int userId, int id);
 
-    Collection<Meal> getAll();
+    // null if not found
+    Meal get(int userId, int id);
+
+
+    List<Meal> getAllForUser(int userId);
 }
