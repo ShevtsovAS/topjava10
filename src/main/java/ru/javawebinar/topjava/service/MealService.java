@@ -14,5 +14,5 @@ public interface MealService {
 
     List<Meal> getAllForUser(int userId);
 
-    void update(Meal meal, int id) throws NotFoundException, IllegalArgumentException;
+    void update(Meal meal, int userId) throws NotFoundException, IllegalArgumentException;
 }
