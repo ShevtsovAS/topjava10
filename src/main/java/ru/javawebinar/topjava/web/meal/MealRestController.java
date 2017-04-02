@@ -27,7 +27,12 @@ public class MealRestController {
 
     public List<MealWithExceed> getFilteredForUser(int userId, LocalDate startDate, LocalDate endDate, LocalTime startTime, LocalTime endTime) {
         LOG.info("getFilteredMeals");
-        return MealsUtil.getFilteredWithExceeded(service.getAllForUser(userId), startDate, endDate, startTime, endTime, MealsUtil.DEFAULT_CALORIES_PER_DAY);
+        return MealsUtil.getFilteredWithExceeded(
+                service.getFiltered(userId, startDate, endDate),
+                startTime,
+                endTime,
+                MealsUtil.DEFAULT_CALORIES_PER_DAY
+        );
     }
 
     public Meal get(int userId, int mealId) {
