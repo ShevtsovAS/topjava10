@@ -23,11 +23,11 @@ public class SpringMain {
             adminUserController.create(new User(null, "userName", "email", "password", Role.ROLE_ADMIN));
             MealRestController mealRestController = appCtx.getBean(MealRestController.class);
             mealRestController.create(new Meal(AuthorizedUser.id(), LocalDateTime.now(), "Ужин", 510));
-            mealRestController.getAllForUser(AuthorizedUser.id());
+            mealRestController.getAll(AuthorizedUser.id());
             mealRestController.delete(AuthorizedUser.id(), 1);
             Meal meal = mealRestController.get(AuthorizedUser.id(), 2);
             mealRestController.update(meal, AuthorizedUser.id());
-            mealRestController.getFilteredForUser(
+            mealRestController.getFiltered(
                     AuthorizedUser.id(),
                     LocalDate.of(2015, Month.MAY, 31),
                     LocalDate.of(2015, Month.MAY, 31),

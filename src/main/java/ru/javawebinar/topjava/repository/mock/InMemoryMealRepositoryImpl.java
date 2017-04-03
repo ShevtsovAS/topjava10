@@ -34,13 +34,13 @@ public class InMemoryMealRepositoryImpl implements MealRepository {
 
     @Override
     public boolean update(Meal meal, int userId) {
-        return meal.getUserId() == userId && save(meal) != null;
+        return meal != null && meal.getUserId() == userId && save(meal) != null;
     }
 
     @Override
     public boolean delete(int userId, int id) {
         Meal meal = repository.get(id);
-        return meal != null && userId == repository.get(id).getUserId() && repository.remove(id) != null;
+        return meal != null && userId == meal.getUserId() && repository.remove(id) != null;
     }
 
     @Override

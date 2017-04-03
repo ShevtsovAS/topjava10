@@ -17,5 +17,5 @@ public interface MealService {
 
     List<Meal> getFiltered(int userId, LocalDate startDate, LocalDate endDate);
 
-    void update(Meal meal, int userId) throws NotFoundException, IllegalArgumentException;
+    void update(Meal meal, int userId) throws NotFoundException;
 }

@@ -19,6 +19,15 @@
 <section>
     <h2><a href="index.html">Home</a></h2>
     <h2>Meal list</h2>
+    <form method="post" action="meals">
+        <input type="hidden" name="filter" value="true">
+        От даты: <input type="date" name="startDate">
+        До даты: <input type="date" name="endDate">
+        От времени: <input type="time" name="startTime">
+        До времени: <input type="time" name="endTime">
+        <button type="submit">Filter</button>
+        <button type="reset"><a href="meals">Reset</a></button>
+    </form>
     <a href="meals?action=create">Add Meal</a>
     <hr>
     <table border="1" cellpadding="8" cellspacing="0">

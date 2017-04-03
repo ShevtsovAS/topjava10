@@ -20,12 +20,12 @@ public class MealRestController {
     @Autowired
     private MealService service;
 
-    public List<MealWithExceed> getAllForUser(int userId) {
+    public List<MealWithExceed> getAll(int userId) {
         LOG.info("getAllMeals");
         return MealsUtil.getWithExceeded(service.getAllForUser(userId), MealsUtil.DEFAULT_CALORIES_PER_DAY);
     }
 
-    public List<MealWithExceed> getFilteredForUser(int userId, LocalDate startDate, LocalDate endDate, LocalTime startTime, LocalTime endTime) {
+    public List<MealWithExceed> getFiltered(int userId, LocalDate startDate, LocalDate endDate, LocalTime startTime, LocalTime endTime) {
         LOG.info("getFilteredMeals");
         if (startDate == null) startDate = LocalDate.MIN;
         if (endDate == null) endDate = LocalDate.MAX;
@@ -50,12 +50,12 @@ public class MealRestController {
     }
 
     public Meal create(Meal meal) {
-        LOG.info("create " + meal);
+        LOG.info("Create {}", meal);
         return service.save(meal);
     }
 
     public void update(Meal meal, int userId) {
-        LOG.info("update meal " + meal);
+        LOG.info("Update {}", meal);
         service.update(meal, userId);
     }
 }
