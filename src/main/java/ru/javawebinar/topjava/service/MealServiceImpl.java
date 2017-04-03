@@ -34,8 +34,8 @@ public class MealServiceImpl implements MealService {
     }
 
     @Override
-    public List<Meal> getAllForUser(int userId) {
-        return repository.getAllForUser(userId);
+    public List<Meal> getAll(int userId) {
+        return repository.getAll(userId);
     }
 
     @Override

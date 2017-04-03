@@ -13,7 +13,7 @@ public interface MealService {
 
     Meal get(int userId, int mealId) throws NotFoundException;
 
-    List<Meal> getAllForUser(int userId);
+    List<Meal> getAll(int userId);
 
     List<Meal> getFiltered(int userId, LocalDate startDate, LocalDate endDate);
 
