@@ -12,13 +12,12 @@ import java.util.List;
 import static ru.javawebinar.topjava.util.ValidationUtil.checkNotFound;
 import static ru.javawebinar.topjava.util.ValidationUtil.checkNotFoundWithId;
 
-@Service
-public class UserServiceImpl implements UserService {
-
+@Service("serviceForTestInMemory")
+public class InMemoryUserServiceImpl implements UserService {
     private final UserRepository repository;
 
     @Autowired
-    public UserServiceImpl(@Qualifier("dbUserRepository") UserRepository repository) {
+    public InMemoryUserServiceImpl(@Qualifier("inMemoryUserRepository") UserRepository repository) {
         this.repository = repository;
     }
 

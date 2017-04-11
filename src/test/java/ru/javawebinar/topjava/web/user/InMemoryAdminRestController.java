@@ -9,10 +9,10 @@ import ru.javawebinar.topjava.service.UserService;
 import java.util.List;
 
 @Controller
-public class AdminRestController extends AbstractUserController {
+public class InMemoryAdminRestController extends AbstractUserController {
 
     @Autowired
-    public AdminRestController(@Qualifier("userServiceImpl") UserService service) {
+    public InMemoryAdminRestController(@Qualifier("serviceForTestInMemory") UserService service) {
         super(service);
     }
 

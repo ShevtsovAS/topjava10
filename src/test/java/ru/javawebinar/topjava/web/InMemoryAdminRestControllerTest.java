@@ -6,8 +6,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ru.javawebinar.topjava.UserTestData;
 import ru.javawebinar.topjava.model.User;
 import ru.javawebinar.topjava.repository.UserRepository;
+import ru.javawebinar.topjava.repository.mock.InMemoryUserRepositoryImpl;
 import ru.javawebinar.topjava.util.exception.NotFoundException;
-import ru.javawebinar.topjava.web.user.AdminRestController;
+import ru.javawebinar.topjava.web.user.InMemoryAdminRestController;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -17,13 +18,13 @@ import static ru.javawebinar.topjava.UserTestData.USER;
 
 public class InMemoryAdminRestControllerTest {
     private static ConfigurableApplicationContext appCtx;
-    private static AdminRestController controller;
+    private static InMemoryAdminRestController controller;
 
     @BeforeClass
     public static void beforeClass() {
-        appCtx = new ClassPathXmlApplicationContext("spring/spring-app.xml");
+        appCtx = new ClassPathXmlApplicationContext("spring/spring-app.xml", "spring/spring-db.xml");
         System.out.println("\n" + Arrays.toString(appCtx.getBeanDefinitionNames()) + "\n");
-        controller = appCtx.getBean(AdminRestController.class);
+        controller = appCtx.getBean(InMemoryAdminRestController.class);
     }
 
     @AfterClass
@@ -34,7 +35,7 @@ public class InMemoryAdminRestControllerTest {
     @Before
     public void setUp() throws Exception {
         // Re-initialize
-        UserRepository repository = appCtx.getBean(UserRepository.class);
+        UserRepository repository = appCtx.getBean(InMemoryUserRepositoryImpl.class);
         repository.getAll().forEach(u -> repository.delete(u.getId()));
         repository.save(USER);
         repository.save(ADMIN);
