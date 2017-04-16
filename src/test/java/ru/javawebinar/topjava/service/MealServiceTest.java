@@ -1,5 +1,7 @@
 package ru.javawebinar.topjava.service;
 
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -21,6 +23,8 @@ import ru.javawebinar.topjava.web.meal.MealRestController;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import static ru.javawebinar.topjava.MealTestData.*;
 import static ru.javawebinar.topjava.UserTestData.ADMIN_ID;
@@ -41,6 +45,7 @@ public class MealServiceTest {
     }
 
     private static long startTime;
+    private static Map<String, Long> testTimes;
 
     @Autowired
     private MealService service;
@@ -58,11 +63,27 @@ public class MealServiceTest {
 
         @Override
         protected void finished(Description description) {
-            LOG.info("{} is finished. Time: {}ms", description.getMethodName(), System.currentTimeMillis() - startTime);
+            long time = System.currentTimeMillis() - startTime;
+            LOG.info("{} is finished. Time: {}ms", description.getMethodName(), time);
+            testTimes.put(description.getMethodName(), time);
         }
 
 
     };
+
+    @BeforeClass
+    public static void beforeClass() {
+        testTimes = new HashMap<>();
+    }
+
+    @AfterClass
+    public static void afterClass() {
+        System.out.println();
+        for (String test : testTimes.keySet()) {
+            System.out.printf("%s - %dms\n", test, testTimes.get(test));
+        }
+        System.out.println();
+    }
 
     @Test
     public void testDelete() throws Exception {
