@@ -81,4 +81,11 @@ public class MealRestControllerTest extends AbstractControllerTest {
                 .andExpect(status().isOk())
                 .andDo(print());
     }
+
+    @Test
+    public void testFilter() throws Exception {
+        mockMvc.perform(get(REST_URL + "filter?startDate=2015-05-30&startTime=07:00&endDate=2015-05-31&endTime=11:00"))
+                .andExpect(status().isOk())
+                .andDo(print());
+    }
 }
